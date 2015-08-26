@@ -7,7 +7,7 @@ When finished, files can be found in COBRA_RELEASE/COBRA_DEBUG folders.
 Prerequesites:
 
 - Estwald's PSL1GHT Environment installed and configured (PATH variable in batch!)
-- rename bin_rename folder to bin (stupid github)
+- rename both bin_rename folders in ps3dev2 to bin (stupid github)
 - rename vsh.self.swp.neu to vsh.self.swp (-""-)
 
 
