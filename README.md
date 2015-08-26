@@ -11,11 +11,12 @@ Prerequesites:
 
 Changes:
 
-- Prepatched modules: Only 4 files are processed by COBRA (libfs.sprx, emulator_api.sprx, emulator_drm.sprx, PEmuCoreLib.sprx)
+- Prepatched modules: Only 6 files are processed by COBRA (vsh.self(s), basic_plugins.sprx, libfs.sprx, emulator_api.sprx, emulator_drm.sprx, PEmuCoreLib.sprx)
 - No vsh unsigned-app patch: NPDRM fself work with COBRA enabled or disabled on DEX
 - Button shortcut to toggle ps1_emu.self<->ps1_netemu.self (By default ps1_emu.self is used, hold L2+X when starting mounted psx iso to toggle to ps1_netemu.self)
 - By default PSP Extra Savedata Patch removed. Can be applied with button shortcut R1+X when launching mounted psp iso (This patch is no good for some games like LocoRoco and they do not work with savedata utility)
 - Added fully ported 4.21 ps2netemu. I am too lazy to port ps2emu for backwards and semibackwards and I cannot test them!
+- Added prepatched modules with matching hashes
 
 Tools used:
 
