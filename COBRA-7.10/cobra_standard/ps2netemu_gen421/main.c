@@ -272,7 +272,7 @@ static uint64_t get_func_address(char *line)
 	{
 		if (line[i-1] == '0' && line[i] == 'x')
 		{
-			sscanf(line+i-1, "0x%lx", &address);
+			sscanf(line+i-1, "0x%llx", &address);
 			break;
 		}
 	}
@@ -357,7 +357,7 @@ static int patch_emu(char *payload_map_file)
 					break;
 				}
 				
-				printf("cdvd_read_patched found at %lx\n", addr);
+				printf("cdvd_read_patched found at %llx\n", addr);
 				hook_function_with_cond_postcall(cdvd_read_symbol, ps2_netemu+addr, 4);
 			}
 			else if (strcmp(name, "read_iso_size") == 0)
@@ -371,7 +371,7 @@ static int patch_emu(char *payload_map_file)
 					break;
 				}
 				
-				printf("read_iso_size found at %lx\n", addr);
+				printf("read_iso_size found at %llx\n", addr);
 				patch_call(read_iso_size_call, ps2_netemu+addr);
 			}
 			else if (strcmp(name, "fstat_iso_patched") == 0)
@@ -385,7 +385,7 @@ static int patch_emu(char *payload_map_file)
 					break;
 				}
 				
-				printf("fstat_iso_patched found at %lx\n", addr);
+				printf("fstat_iso_patched found at %llx\n", addr);
 				patch_call(fstat_iso_call, ps2_netemu+addr);
 			}
 			else if (strcmp(name, "open_iso") == 0)
@@ -399,7 +399,7 @@ static int patch_emu(char *payload_map_file)
 					break;
 				}
 				
-				printf("open_iso found at %lx\n", addr);
+				printf("open_iso found at %llx\n", addr);
 				patch_call(open_iso_call1, ps2_netemu+addr);
 				patch_call(open_iso_call2, ps2_netemu+addr);
 			}
@@ -563,7 +563,7 @@ int main(int argc, char *argv[])
 	ps2_netemu = malloc(load_size);
 	if (!ps2_netemu)
 	{
-		printf("Cannot allocate %ld bytes\n", load_size);
+		printf("Cannot allocate %llx bytes\n", load_size);
 		return -5;
 	}
 	
