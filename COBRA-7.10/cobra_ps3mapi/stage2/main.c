@@ -57,7 +57,7 @@
 // F = 7.0
 
 #define COBRA_VERSION		0x0F
-#define COBRA_VERSION_BCD	0x0777
+#define COBRA_VERSION_BCD	0x0710
 
 #if defined(FIRMWARE_3_41)
 #define FIRMWARE_VERSION	0x0000
@@ -315,12 +315,12 @@ static INLINE int sys_get_version2(uint16_t *version)
 	return copy_to_user(&cb, get_secure_user_ptr(version), sizeof(uint16_t));
 }
 
-/* LV2_SYSCALL2(uint64_t, sys_cfw_lv1_peek, (uint64_t lv1_addr))
+LV2_SYSCALL2(uint64_t, sys_cfw_lv1_peek, (uint64_t lv1_addr))
 {
     uint64_t ret;
     ret = lv1_peekd(lv1_addr); 
     return ret;
-} */
+}
 
 static inline void ps3mapi_unhook_all(void)
 {
@@ -743,7 +743,7 @@ static INLINE void apply_kernel_patches(void)
 	create_syscall2(7, sys_cfw_poke);
 	create_syscall2(9, sys_cfw_lv1_poke);
 	create_syscall2(10, sys_cfw_lv1_call);
-	// create_syscall2(11, sys_cfw_lv1_peek);
+	create_syscall2(11, sys_cfw_lv1_peek);
 }
 
 int main(void)
@@ -781,9 +781,10 @@ int main(void)
 	//do_pad_test();
 #endif	
 
-	map_path("/app_home", "/dev_flash/rebug/packages", 0);
+	map_path("/app_home", "/dev_usb000", 0);
+	// map_path("/app_home", "/dev_flash/rebug/packages", 0);
 
-	cellFsUtilMount("CELL_FS_IOS:BUILTIN_FLSH1", "CELL_FS_FAT", "/dev_rebug", 0, 0, 0, 0, 0);
+	// cellFsUtilMount("CELL_FS_IOS:BUILTIN_FLSH1", "CELL_FS_FAT", "/dev_rebug", 0, 0, 0, 0, 0);
 
 	return 0;
 }

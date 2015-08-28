@@ -8,9 +8,9 @@
 
 #if defined(FIRMWARE_4_21)
 
-#define VSH_HASH			0xa0026096002e22f4 /* D-REX vsh.self */
-#define VSH_NRM_HASH			0xa0026096002e22f1 /* D-REX vsh.self.nrm */
-#define VSH_CEX_HASH			0xa001ccbe002dcc14 /* D-REX vsh.self.cexsp */
+#define VSH_HASH			0xa0026096002dfaed /* D-REX vsh.self */
+#define VSH_NRM_HASH			0xa0026096002dfaec /* D-REX vsh.self.nrm */
+#define VSH_CEX_HASH			0xa001ccbe002dbdc4 /* D-REX vsh.self.cexsp */
 #define BASIC_PLUGINS_HASH		0xd72295740001fa30
 #define NAS_PLUGIN_HASH			0xacf4af2b00025d5d
 #define EXPLORE_PLUGIN_HASH		0xacf4af2b000e71ca
@@ -18,7 +18,7 @@
 #define BDP_DISC_CHECK_PLUGIN_HASH	0xb8b7a5f90000319f
 #define PS1_EMU_HASH			0x7a67e830000a18b6
 #define PS1_NETEMU_HASH			0x7a374d45000c4393
-#define GAME_EXT_PLUGIN_HASH		0xe274af7b0001d751
+#define GAME_EXT_PLUGIN_HASH		0xe274af7b0001d6d2
 #define PSP_EMULATOR_HASH		0x7be65d6d00023701
 #define EMULATOR_API_HASH		0xa9f5b2320001e7c6
 #define PEMUCORELIB_HASH		0xf349a563000bf7e3
