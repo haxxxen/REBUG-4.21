@@ -27,8 +27,8 @@
 #define BOOT_PLUGINS_FILE		"/dev_hdd0/boot_plugins.txt"
 #define BOOT_PLUGINS_FIRST_SLOT		1
 #define MAX_BOOT_PLUGINS 		(MAX_VSH_PLUGINS-BOOT_PLUGINS_FIRST_SLOT)
-#define PRX_PATH			"/dev_hdd0/z/plugins/webMAN.sprx"
-// #define PRX_PATH			"/dev_flash/vsh/module/webftp_server.sprx"
+// #define PRX_PATH			"/dev_hdd0/z/plugins/webMAN.sprx"
+#define PRX_PATH			"/dev_flash/vsh/module/webftp_server.sprx"
 
 LV2_EXPORT int decrypt_func(uint64_t *, uint32_t *);
 
@@ -94,9 +94,11 @@ uint8_t safe_mode;
 
 static uint32_t caller_process = 0;
 
-/* #if defined(CEX_KERNEL)
+#if defined(SPRX)
+#if defined(CEX_KERNEL)
 static uint8_t condition_true = 1;
-#endif */
+#endif
+#endif
 uint8_t condition_ps2softemu = 0;
 uint8_t condition_apphome = 0;
 // uint8_t condition_disable_gameupdate = 0; // Disabled
@@ -1078,12 +1080,10 @@ void load_boot_plugins(void)
 	//Loading webman from flash - must first detect if the toogle is activated
 	if ( prx_load_vsh_plugin(current_slot, PRX_PATH, NULL, 0) >=0)
 	{
-		#ifndef  DEBUG
 		DPRINTF("Loading webMAN plugin into slot %x\n", current_slot);
-		#endif
-       current_slot++;
+		current_slot++;
 		num_loaded++;
-		webman_loaded=1;
+		webman_loaded = 1;
 	}
 	// KW END
 
@@ -1098,12 +1098,10 @@ void load_boot_plugins(void)
 		if (read_text_line(fd, path, sizeof(path), &eof) > 0)
 		{
 			//KW BEGIN
-			if ((!webman_loaded) || (!strstr(path, "webftp_server")) ) 		
+			if ((webman_loaded != 1) || (!strcmp(path, "webftp_server.sprx")))		
 			{
 				int ret = prx_load_vsh_plugin(current_slot, path, NULL, 0);	
-				#ifndef  DEBUG
 				DPRINTF("Load boot plugin %s -> %x\n", path, current_slot);
-				#endif
 				if (ret >= 0)
 				{
 					current_slot++;

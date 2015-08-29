@@ -39,7 +39,11 @@ int main(void)
 	
 #ifdef DEBUG		
 	debug_init();
-	DPRINTF("Stage1 hello.\n");	
+#if defined(CEX_KERNEL)
+	DPRINTF("CEX Stage 1 says hello.\n");	
+#elif defined(DEX_KERNEL)
+	DPRINTF("DEX Stage 1 says hello.\n");	
+#endif
 #endif
 	f.addr = flash_mount_clone;
 	f.toc = (void *)MKA(TOC);
@@ -65,7 +69,11 @@ int main(void)
 			{
 				uint32_t psize = stat.st_size;
 				
-				DPRINTF("Payload size = %d\n", psize);
+#if defined(CEX_KERNEL)
+					DPRINTF("CEX Payload size = %d\n", psize);
+#elif defined(DEX_KERNEL)
+					DPRINTF("DEX Payload size = %d\n", psize);
+#endif
 				
 				stage2 = alloc(psize, 0x27);
 				if (stage2)
@@ -74,14 +82,22 @@ int main(void)
 					
 					if (cellFsRead(fd, stage2, psize, &rs) != 0)
 					{
-						DPRINTF("Stage 2 read fail.\n");
+#if defined(CEX_KERNEL)
+							DPRINTF("CEX Stage 2 read fail.\n");
+#elif defined(DEX_KERNEL)
+							DPRINTF("DEX Stage 2 read fail.\n");
+#endif
 						dealloc(stage2, 0x27);
 						stage2 = NULL;
 					}
 				}
 				else
 				{
-					DPRINTF("Cannot allocate stage2\n");
+#if defined(CEX_KERNEL)
+						DPRINTF("Cannot allocate CEX Stage 2\n");
+#elif defined(DEX_KERNEL)
+						DPRINTF("Cannot allocate DEX Stage 2\n");
+#endif
 				}
 				
 				cellFsClose(fd);
@@ -89,7 +105,11 @@ int main(void)
 		}
 		else
 		{
-			DPRINTF("There is no stage 2, booting system.\n");
+#if defined(CEX_KERNEL)
+			DPRINTF("There is no CEX Stage 2, booting system.\n");
+#elif defined(DEX_KERNEL)
+			DPRINTF("There is no DEX Stage 2, booting system.\n");
+#endif
 		}
 	}
 	
@@ -97,7 +117,11 @@ int main(void)
 	{
 		f.addr = stage2;			
 		func = (void *)&f;	
-		DPRINTF("Calling stage 2...\n");
+#if defined(CEX_KERNEL)
+		DPRINTF("Calling CEX Stage 2...\n");
+#elif defined(DEX_KERNEL)
+		DPRINTF("Calling DEX Stage 2...\n");
+#endif
 		func();
 	}
 	
