@@ -11,6 +11,7 @@ if exist COBRA_RELEASE rm -fr COBRA_RELEASE
 if exist COBRA_DEBUG rm -fr COBRA_DEBUG/*.*>nul
 if exist COBRA_DEBUG rm -fr COBRA_DEBUG
 
+make -f netemu/Makefile clean
 make -f stage0_file/Makefile clean
 make -f stage1_file/Makefile clean
 make -f stage2/Makefile clean

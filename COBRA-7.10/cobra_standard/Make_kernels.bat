@@ -11,7 +11,6 @@ if exist *.self rm -fr *.self>nul
 
 make -f stage0_file/Makefile all
 make -f stage1_file/Makefile all
-make -f stage0_file/Makefile clean
 
 if not exist COBRA_RELEASE mkdir COBRA_RELEASE
 if not exist COBRA_DEBUG mkdir COBRA_DEBUG

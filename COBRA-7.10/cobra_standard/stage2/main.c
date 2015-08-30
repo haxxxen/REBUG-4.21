@@ -30,7 +30,7 @@
 #include "permissions.h"
 #include "psp.h"
 #include "config.h"
-#include "drm.h"
+// #include "drm.h"
 // #include "sm_ext.h"
 #include "laboratory.h"
 
@@ -478,9 +478,9 @@ LV2_SYSCALL2(int64_t, syscall8, (uint64_t function, uint64_t param1, uint64_t pa
 			return sys_prx_unload_vsh_plugin(param1);
 		break;
 		
-		case SYSCALL8_OPCODE_DRM_GET_DATA:
+/* 		case SYSCALL8_OPCODE_DRM_GET_DATA:
 			return sys_drm_get_data((void *)param1, param2);
-		break;
+		break; */
 		
 /* 		case SYSCALL8_OPCODE_SEND_POWEROFF_EVENT:
 			return sys_sm_ext_send_poweroff_event((int)param1);
@@ -570,7 +570,7 @@ int main(void)
 	
 	storage_ext_init();	
 	modules_patch_init();	
-	drm_init();
+	// drm_init();
 	
 	apply_kernel_patches();	
 	map_path_patches(1);
