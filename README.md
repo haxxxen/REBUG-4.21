@@ -19,6 +19,7 @@ Changes:
 - By default PSP Extra Savedata Patch removed. Can be applied with button shortcut R1+X when launching mounted psp iso (This patch is no good for some games like LocoRoco and they do not work with savedata utility)
 - Added fully ported 4.21 ps2netemu. I am too lazy to port ps2emu for backwards and semibackwards and I cannot test them!
 - Added prepatched modules with matching hashes
+- Updated the toolchain from NzV, to include all missing headers (also malloc.h). Now everything compiles fine on windows, even netemu :)
 
 Tools used:
 
