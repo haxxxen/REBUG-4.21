@@ -1103,7 +1103,7 @@ void load_boot_plugins(void)
 		if (read_text_line(fd, path, sizeof(path), &eof) > 0)
 		{
 			//KW BEGIN
-			if ((webman_loaded != 1) || (!strcmp(path, "webftp_server.sprx")) ) 		
+			if ((webman_loaded != 1) || (!strcmp(path, "webftp_server")) ) 		
 			{
 				int ret = prx_load_vsh_plugin(current_slot, path, NULL, 0);	
 				DPRINTF("Load boot plugin %s -> %x\n", path, current_slot);
