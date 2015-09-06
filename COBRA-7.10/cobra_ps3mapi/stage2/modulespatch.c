@@ -27,7 +27,6 @@
 #define BOOT_PLUGINS_FILE		"/dev_hdd0/boot_plugins.txt"
 #define BOOT_PLUGINS_FIRST_SLOT		1
 #define MAX_BOOT_PLUGINS 		(MAX_VSH_PLUGINS-BOOT_PLUGINS_FIRST_SLOT)
-// #define PRX_PATH			"/dev_hdd0/z/plugins/webMAN.sprx"
 #define PRX_PATH			"/dev_flash/vsh/module/webftp_server.sprx"
 
 LV2_EXPORT int decrypt_func(uint64_t *, uint32_t *);
@@ -938,14 +937,16 @@ int prx_load_vsh_plugin(unsigned int slot, char *path, void *arg, uint32_t arg_s
 	if (ret == 0)
 	{
 		vsh_plugins[slot] = prx;
+		DPRINTF("Load VSH PLUGIN SUCCESS\n");
 	}
 	else
 	{
 		prx_stop_module_with_thread(prx, vsh_process, 0, 0);
 		prx_unload_module(prx, vsh_process);
+		DPRINTF("Load VSH PLUGIN ERROR: %x\n", ret);
 	}
 	
-	DPRINTF("Vsh plugin load: %x\n", ret);
+	// DPRINTF("Vsh plugin load: %x\n", ret);
 	
 	return ret;
 }
@@ -1076,14 +1077,15 @@ void load_boot_plugins(void)
 	if (!vsh_process)
 		return;
 
-	// KW BEGIN / Special thanks to KW for providing an awesome source
+	// KW BEGIN
+	// Special thanks to KW for providing an awesome source
 	//Loading webman from flash - must first detect if the toogle is activated
 	if ( prx_load_vsh_plugin(current_slot, PRX_PATH, NULL, 0) >=0)
 	{
-		DPRINTF("Loading webMAN plugin into slot %x\n", current_slot);
+		DPRINTF("Integrated %s plugin loaded into Slot: %x\n", PRX_PATH, current_slot);
 		current_slot++;
 		num_loaded++;
-		webman_loaded = 1;
+		webman_loaded=1;
 	}
 	// KW END
 
@@ -1098,12 +1100,12 @@ void load_boot_plugins(void)
 		if (read_text_line(fd, path, sizeof(path), &eof) > 0)
 		{
 			//KW BEGIN
-			if ((webman_loaded != 1) || (!strcmp(path, "webftp_server.sprx")))		
+			if ((!webman_loaded) || (!strstr(path, "webftp_server")) )
 			{
 				int ret = prx_load_vsh_plugin(current_slot, path, NULL, 0);	
-				DPRINTF("Load boot plugin %s -> %x\n", path, current_slot);
 				if (ret >= 0)
 				{
+					DPRINTF("BOOTPLUGIN %s loaded into Slot: %x\n", path, current_slot);
 					current_slot++;
 					num_loaded++;
 				}

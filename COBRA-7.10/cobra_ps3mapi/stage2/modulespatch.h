@@ -8,9 +8,9 @@
 
 #if defined(FIRMWARE_4_21)
 
-#define VSH_HASH			0xa0026096002dfaed /* D-REX vsh.self */
-#define VSH_NRM_HASH			0xa0026096002dfaec /* D-REX vsh.self.nrm */
-#define VSH_CEX_HASH			0xa001ccbe002dbdc4 /* D-REX vsh.self.cexsp */
+#define VSH_HASH			0xa0026096002dfafb /* D-REX vsh.self */
+#define VSH_NRM_HASH			0xa0026096002e22f2 /* D-REX vsh.self.nrm */
+#define VSH_CEX_HASH			0xa001ccbe002dcc23 /* D-REX vsh.self.cexsp */
 #define BASIC_PLUGINS_HASH		0xd72295740001fa30
 #define NAS_PLUGIN_HASH			0xacf4af2b00025d5d
 #define EXPLORE_PLUGIN_HASH		0xacf4af2b000e71ca
