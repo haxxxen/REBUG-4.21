@@ -8,6 +8,7 @@ Prerequesites:
 
 - Estwald's PSL1GHT Environment installed and configured (PATH variable in batch!)
 - rename both bin_rename folders in ps3dev2 to bin (stupid github)
+- rename debug_rename folders to debug (-""-)
 - rename vsh.self.swp.neu to vsh.self.swp (-""-)
 
 
