@@ -336,13 +336,13 @@ LV2_SYSCALL2(int64_t, syscall11, (uint64_t function, uint64_t param1, uint64_t p
 		}
 	}	
 	
-	if (function == (SYSCALL11_OPCODE_GET_VERSION-11))
+	if (function == (SYSCALL11_OPCODE_GET_VERSION-8))
 	{
 		// 0x6FF8. On 0x7000 it *could* crash
 		pid_blocked = pid;
 		return ENOSYS;
 	}
-	else if (function == (SYSCALL11_OPCODE_PSP_POST_SAVEDATA_INITSTART-11))
+	else if (function == (SYSCALL11_OPCODE_PSP_POST_SAVEDATA_INITSTART-8))
 	{
 		// 0x3000, On 0x3008 it *could* crash
 		pid_blocked = pid;
