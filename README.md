@@ -31,5 +31,5 @@ Tools used:
 - scetool: To resign lv2_kernels
 - mingw/msys
 
-Credits to Joonie, habib, NzV, aldostools, COBRA Developers, KW and all others that are involved with COBRA.
+Credits to Rancid-o (my "COBRA mentor"), Joonie, habib, NzV, aldostools, COBRA Developers, KW and all others that are involved with COBRA.
 And of course STLcardsWS, for the idea of bringing COBRA opensource
